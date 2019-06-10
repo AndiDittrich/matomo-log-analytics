@@ -437,6 +437,12 @@ _OVH_FORMAT = (
     r'\s+"(?P<referrer>.*?)"\s+"(?P<user_agent>.*?)"'
 )
 
+_LIGHTTPD_FORMAT = (
+    r'(?P<ip>\S+)\s+(?P<host>[\w][\w\-\.]+)\s+(?P<userid>\S+)\s+\[(?P<date>.*?)\s+(?P<timezone>.*?)\]\s+'
+    r'"(?P<method>\S+)\s+(?P<path>.*?)\s+\S+"\s+(?P<status>\S+)\s+(?P<length>\S+)'
+    r'\s+"(?P<referrer>.*?)"\s+"(?P<user_agent>.*?)"'
+)
+
 FORMATS = {
     'common': RegexFormat('common', _COMMON_LOG_FORMAT),
     'common_vhost': RegexFormat('common_vhost', _HOST_PREFIX + _COMMON_LOG_FORMAT),
@@ -450,7 +456,8 @@ FORMATS = {
     'icecast2': RegexFormat('icecast2', _ICECAST2_LOG_FORMAT),
     'elb': RegexFormat('elb', _ELB_LOG_FORMAT, '%Y-%m-%dT%H:%M:%S'),
     'nginx_json': JsonFormat('nginx_json'),
-    'ovh': RegexFormat('ovh', _OVH_FORMAT)
+    'ovh': RegexFormat('ovh', _OVH_FORMAT),
+    'lighttpd': RegexFormat('lighttpd', _LIGHTTPD_FORMAT)
 }
 
 ##
